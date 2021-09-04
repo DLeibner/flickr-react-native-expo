@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
 import searchFlickr from '../api/flickr';
-//import {API_KEY} from "@env"; // TODO fix
-const API_KEY = 'fkafa';
+import { API_KEY } from '@env';
 
 function Search( {setPhotos} ) {
   const [text, onChangeText] = React.useState("");
