@@ -1,0 +1,12 @@
+import React from 'react';
+import { View, Text } from 'react-native';
+
+function Search(props) {
+  return (
+    <View>
+      <Text> This is search </Text>
+    </View>
+  );
+}
+
+export default Search;
