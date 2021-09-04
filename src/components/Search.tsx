@@ -8,7 +8,7 @@ function Search( {setPhotos} ) {
   const [text, onChangeText] = React.useState("");
 
   const searchAndSetPhotos = () => {
-    let data = searchFlickr(API_KEY, text);
+    let data = searchFlickr(API_KEY, text, "1");
     if (Array.isArray(data)) {
       setPhotos(data);
     } else {

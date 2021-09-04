@@ -10,7 +10,7 @@ const getFlickrImageURL = (photo: any, size: string) => {
   return url;
 };
 
-const searchFlickr = (apiKey: string, searchText: string) : any => {
+const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any => {
   const data = {
     method: 'flickr.photos.search',
     api_key: apiKey,
@@ -21,6 +21,7 @@ const searchFlickr = (apiKey: string, searchText: string) : any => {
     extras: 'owner_name,license',
     format: 'json',
     nojsoncallback: '1',
+    page: pageNum
   };
 
   const parameters = new URLSearchParams(data);
