@@ -4,10 +4,13 @@ import Gallery from './Gallery';
 import Search from './Search';
 
 const Home = () => {
+  // todo state for array of flickr images
+  const [photos, setPhotos] = React.useState([]);
+
   return (
     <View style={styles.container}>
-      <Search />
-      <Gallery></Gallery>
+      <Search setPhotos={setPhotos} />
+      <Gallery photos={photos} />
     </View>
   );
 }
