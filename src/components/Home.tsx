@@ -22,7 +22,7 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     backgroundColor: '#00e3f3',
     alignItems: 'center',
     justifyContent: 'center',

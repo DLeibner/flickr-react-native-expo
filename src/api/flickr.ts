@@ -1,4 +1,4 @@
-import { PhotoDefinition } from "../types/PhotoClass";
+import { Owner, PhotoDefinition, PhotoInformation } from "../types/PhotoClass";
 
 const yourApiKey = 'your api comes here';
 
@@ -11,6 +11,13 @@ const getFlickrImageURL = (photo: any, size: string) => {
   url += '.jpg';
   return url;
 };
+
+const getAPIURL = (params: any) : string => {
+  const parameters = new URLSearchParams(params);
+  const url = `https://api.flickr.com/services/rest/?${parameters}`;
+
+  return url;
+}
 
 const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any => {
   const data = {
@@ -26,8 +33,7 @@ const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any
     page: pageNum
   };
 
-  const parameters = new URLSearchParams(data);
-  const url = `https://api.flickr.com/services/rest/?${parameters}`;
+  const url = getAPIURL(data);
 
   return (new Promise((resolve, reject) => {
     fetch(url)
@@ -38,6 +44,37 @@ const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any
       if (data.photos) {
         console.log('This is data', data);
         res = data.photos.photo.map((photo : any) => new PhotoDefinition(getFlickrImageURL(photo, 'q'), photo.id))
+      } else {
+        alert(data.message);
+      }
+      resolve(res);
+    })
+    .catch(err => reject(err));
+  }));
+};
+ 
+const getPhotoInfo = (apiKey: string, id: string) => {
+  const data = {
+    method: 'flickr.photos.getInfo',
+    api_key: apiKey,
+    id: id
+  }
+
+  const url = getAPIURL(data);
+
+  return (new Promise((resolve, reject) => {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let res: PhotoInformation = {} as PhotoInformation;
+      if (data.photo) {
+        console.log('This is data', data);
+        res = new PhotoInformation(
+          data.photo.title,
+          data.photo.description,
+          data.photo.url,
+          new Owner(data.photo.username, data.photo.realname, data.photo.location)
+        );
       } else {
         alert(data.message);
       }

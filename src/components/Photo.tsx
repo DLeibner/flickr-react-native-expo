@@ -8,17 +8,22 @@ function Photo({ item }) {
         source={{uri: item.url}}
         style={styles.image}
       />
+      onPress={() => {
+          //navigation.navigate('Details', item.id);
+        }}
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   image: {
+    alignContent: 'center',
     width: 150,
     height: 150,
     borderColor: "#00e3f3",
     borderWidth: 2,
-    resizeMode: 'contain'
+    resizeMode: 'center',
+    position: 'relative'
   },
 });
 
