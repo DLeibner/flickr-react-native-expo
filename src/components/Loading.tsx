@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 function Loading() {
   return (
-    <View>
+    <View style={{alignItems:'center'}}>
       <Text>Loading ...</Text>
     </View>
   );

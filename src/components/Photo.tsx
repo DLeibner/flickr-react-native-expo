@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     width: window.width*0.48,
     height: window.width*0.48,
-    borderColor: "#00e3f3",
+    borderColor: "#a2e7ec",
     borderWidth: 5,
     resizeMode: 'cover',
     position: 'relative'

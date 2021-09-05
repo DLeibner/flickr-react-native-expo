@@ -34,14 +34,13 @@ function Search( {setPhotos, setSearchText, setLoading, setPage} ) {
   );
 }
 
-
-
 const styles = StyleSheet.create({
   input: {
     height: 40,
     marginBottom: 12,
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "white"
   },
   container: {
     padding: 12,
