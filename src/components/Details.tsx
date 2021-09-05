@@ -15,19 +15,23 @@ function Details({ route }) {
     });
   }, []);
 
+  const Details = () => (
+    <View style={{padding: 8}}>
+      <Text style={styles.title} >{photoInfo && photoInfo.title}</Text>
+      <Text style={styles.info} >{photoInfo && photoInfo.description && 'Description: ' + photoInfo.description }</Text>
+      <Text style={styles.info} >{photoInfo && photoInfo.owner && (photoInfo.owner.username || photoInfo.owner.realname) && 'User: ' + (photoInfo.owner.realname || photoInfo.owner.username)}</Text>
+      <Text style={styles.info} >{photoInfo && photoInfo.owner && photoInfo.owner.location && 'Location: ' + photoInfo.owner.location}</Text>
+    </View>
+  );
+
   return (
     <View style={{ flex: 1}}>
       <Image 
         source={{uri: route.params.item.url}}
-        resizeMode={'stretch'}
+        resizeMode='stretch'
         style={{width: window.width, height: window.height}}
       />
-      <View style={{margin: 8}}>
-        <Text style={styles.title} >{photoInfo && photoInfo.title}</Text>
-        <Text style={styles.info} >{photoInfo && photoInfo.description && 'Description: ' + photoInfo.description }</Text>
-        <Text style={styles.info} >{photoInfo && photoInfo.owner && (photoInfo.owner.username || photoInfo.owner.realname) && 'User: ' + (photoInfo.owner.realname || photoInfo.owner.username)}</Text>
-        <Text style={styles.info} >{photoInfo && photoInfo.owner && photoInfo.owner.location && 'Location: ' + photoInfo.owner.location}</Text>
-      </View>
+      {photoInfo && <Details />}
     </View>
   );
 }
