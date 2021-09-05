@@ -1,3 +1,5 @@
+import { PhotoDefinition } from "../types/PhotoClass";
+
 const yourApiKey = 'your api comes here';
 
 const getFlickrImageURL = (photo: any, size: string) => {
@@ -32,10 +34,10 @@ const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any
     .then(response => response.json())
     .then(data => {
       // get an array of image-url
-      let res: string[] = [];
+      let res: Array<PhotoDefinition> = [];
       if (data.photos) {
         console.log('This is data', data);
-        res = data.photos.photo.map((photo : any) => getFlickrImageURL(photo, 'q'))
+        res = data.photos.photo.map((photo : any) => new PhotoDefinition(getFlickrImageURL(photo, 'q'), photo.id))
       } else {
         alert(data.message);
       }

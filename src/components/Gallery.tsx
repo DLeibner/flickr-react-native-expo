@@ -11,6 +11,7 @@ function Gallery( {photos} ) {
         keyExtractor={(item) => item.id}
         // ItemSeparatorComponent= {Separator}
         // ListHeaderComponent={Separator}
+        numColumns={2}
       />
     </View>
   );

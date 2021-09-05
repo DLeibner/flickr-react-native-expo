@@ -22,8 +22,8 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#627754',
+    flex: 2,
+    backgroundColor: '#00e3f3',
     alignItems: 'center',
     justifyContent: 'center',
   },
