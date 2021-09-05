@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import { getPhotoInfo } from '../api/flickr';
 import { API_KEY } from '@env';
+
+const window = Dimensions.get('window');
 
 function Details({ route }) {
   const [photoInfo, setPhotoInfo] = useState();
@@ -17,8 +19,8 @@ function Details({ route }) {
     <View style={{ flex: 1}}>
       <Image 
         source={{uri: route.params.item.url}}
-        resizeMode={'cover'}
-        style={{width: '100%', height: 200}}
+        resizeMode={'stretch'}
+        style={{width: window.width, height: window.height}}
       />
       <View style={{margin: 8}}>
         <Text style={styles.title} >{photoInfo && photoInfo.title}</Text>
