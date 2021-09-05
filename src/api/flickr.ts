@@ -32,15 +32,15 @@ const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any
     .then(response => response.json())
     .then(data => {
       // get an array of image-url
+      let res: string[] = [];
       if (data.photos) {
         console.log('This is data', data);
-        data.photos.photo.map((photo : any) => getFlickrImageURL(photo, 'q'))
+        res = data.photos.photo.map((photo : any) => getFlickrImageURL(photo, 'q'))
       } else {
         alert(data.message);
-        data = [];
       }
+      resolve(res);
     })
-    .then(data => resolve(data))
     .catch(err => reject(err));
   }));
 };

@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 
-function Photo(props) {
+function Photo({ item }) {
   return (
     <View>
-      <Text> This is photo </Text>
+      <Pressable>
+        {/* <Image 
+          source={{uri: item.uri}}
+          style={styles.image} 
+        /> */}
+    </Pressable>
       
     </View>
   );

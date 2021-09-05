@@ -1,12 +1,17 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import Photo from './Photo';
 
 function Gallery( {photos} ) {
   return (
     <View>
-      <Text> This is Gallery </Text>
-      <Photo> </Photo>
+      <FlatList
+        data={photos}
+        renderItem={Photo}
+        keyExtractor={(item) => item.id}
+        // ItemSeparatorComponent= {Separator}
+        // ListHeaderComponent={Separator}
+      />
     </View>
   );
 }

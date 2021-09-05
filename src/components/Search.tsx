@@ -3,17 +3,23 @@ import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
 import searchFlickr from '../api/flickr';
 import { API_KEY } from '@env';
 
-function Search( {setPhotos} ) {
+function Search( {setPhotos, setLoading} ) {
   const [text, onChangeText] = React.useState("");
 
   const searchAndSetPhotos = () => {
-    let data = searchFlickr(API_KEY, text, "1");
-    if (Array.isArray(data)) {
-      setPhotos(data);
-    } else {
-      setPhotos([]);
-      alert(data);
-    }
+    setLoading(true);
+    let dataPromise = searchFlickr(API_KEY, text, "1");
+    dataPromise.then((data: any) => {
+      if (Array.isArray(data)) {
+        setPhotos(data);
+        console.log("data is array:", data);
+      } else {
+        setPhotos([]);
+        console.log("data is NOT array:", data);
+      }
+
+      setLoading(false);
+    });
   }
 
   return (
