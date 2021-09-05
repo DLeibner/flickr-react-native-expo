@@ -2,12 +2,16 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import Photo from './Photo';
 
-function Gallery( {photos} ) {
+function Gallery( {photos, navigation} ) {
+  const renderItem = function (item) {
+    return (<Photo item={item.item} navigation={navigation} />);
+  }
+
   return (
-    <View>
+    <View style={{padding: 12}} >
       <FlatList
         data={photos}
-        renderItem={Photo}
+        renderItem={renderItem}
         keyExtractor={(item) => item.id}
         // ItemSeparatorComponent= {Separator}
         // ListHeaderComponent={Separator}

@@ -1,16 +1,15 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet } from 'react-native';
 
-function Photo({ item }) {
+function Photo({ item, navigation }) {
   return (
-    <Pressable>
+    <Pressable
+      onPress={() => navigation.navigate('Details', item.id)}
+    >
       <Image 
         source={{uri: item.url}}
         style={styles.image}
       />
-      onPress={() => {
-          //navigation.navigate('Details', item.id);
-        }}
     </Pressable>
   );
 }

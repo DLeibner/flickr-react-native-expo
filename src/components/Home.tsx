@@ -1,20 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import Gallery from './Gallery';
 import Loading from './Loading';
 import Search from './Search';
 
-const Home = () => {
+const Home = ({navigation}) => {
   // todo state for array of flickr images
   const [photos, setPhotos] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Search setPhotos = {setPhotos} setLoading = {setLoading} />
       { loading && <Loading /> }
-      <Gallery photos={photos} />
-    </View>
+      <Gallery photos={photos} navigation={navigation} />
+    </ScrollView>
   );
 }
 
@@ -24,7 +24,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#00e3f3',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

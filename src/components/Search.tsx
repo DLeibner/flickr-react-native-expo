@@ -23,7 +23,7 @@ function Search( {setPhotos, setLoading} ) {
   }
 
   return (
-    <View>
+    <View style={styles.container} >
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -39,10 +39,13 @@ function Search( {setPhotos, setLoading} ) {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    margin: 12,
+    marginBottom: 12,
     borderWidth: 1,
     padding: 10,
   },
+  container: {
+    padding: 12,
+  }
 });
 
 export default Search;
