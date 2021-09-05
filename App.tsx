@@ -10,7 +10,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Flickr Search" component={Home} />
+        <Stack.Screen name="Home" component={Home} options={{title: 'Flickr Search'}} />
         <Stack.Screen name="Details" component={Details} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -22,15 +22,14 @@ function Gallery( {photos, setPhotos, navigation, page, setPage, searchText} ) {
   }
 
   return (
-    <View style={{padding:7}}>
+    <View style={{padding:7, flex: 1}}>
       <FlatList
         data={photos}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        // ItemSeparatorComponent= {Separator}
-        // ListHeaderComponent={Separator}
         numColumns={2}
-        onEndReached={searchAndAppendPhotos}
+        onEndReached={(dist) => {if (navigation.isFocused()) return searchAndAppendPhotos();}}
+        onEndReachedThreshold={0.1}
       />
     </View>
   );

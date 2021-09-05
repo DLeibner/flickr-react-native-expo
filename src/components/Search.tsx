@@ -10,6 +10,7 @@ function Search( {setPhotos, setSearchText, setLoading, setPage} ) {
     setLoading(true);
     setPage(1);
     setSearchText(text);
+    setPhotos([]);
     let dataPromise = searchFlickr(API_KEY, text, "1");
     dataPromise.then((data: any) => {
       if (Array.isArray(data)) {

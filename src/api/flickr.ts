@@ -60,8 +60,6 @@ export const getPhotoInfo = (apiKey: string, id: string, secret: string) => {
     nojsoncallback: '1',
   }
 
-  console.log('Getting info for photo: ', id);
-
   const url = getAPIURL(data);
 
   return (new Promise((resolve, reject) => {
