@@ -1,10 +1,12 @@
 export class PhotoDefinition {
   public url: string;
   public id: string;
+  public secret: string;
 
-  constructor(url: string, id: string) {
+  constructor(url: string, id: string, secret: string) {
     this.url = url;
     this.id = id;
+    this.secret = secret;
   }
 }
 
@@ -23,13 +25,11 @@ export class Owner {
 export class PhotoInformation {
   public title: string;
   public description: string;
-  public url: string;
   public owner: Owner;
 
-  constructor(title: string, description: string, url: string, owner: Owner) {
+  constructor(title: string, description: string, owner: Owner) {
     this.title = title;
     this.description = description;
-    this.url = url;
     this.owner = owner;
   }
 }

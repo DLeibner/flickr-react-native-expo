@@ -1,10 +1,12 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet } from 'react-native';
+import { Image, Pressable, StyleSheet, Dimensions } from 'react-native';
+
+const window = Dimensions.get('window');
 
 function Photo({ item, navigation }) {
   return (
     <Pressable
-      onPress={() => navigation.navigate('Details', item.id)}
+      onPress={() => navigation.navigate('Details', {item})}
     >
       <Image 
         source={{uri: item.url}}
@@ -17,11 +19,11 @@ function Photo({ item, navigation }) {
 const styles = StyleSheet.create({
   image: {
     alignContent: 'center',
-    width: 150,
-    height: 150,
+    width: window.width*0.48,
+    height: window.width*0.48,
     borderColor: "#00e3f3",
-    borderWidth: 2,
-    resizeMode: 'center',
+    borderWidth: 5,
+    resizeMode: 'cover',
     position: 'relative'
   },
 });

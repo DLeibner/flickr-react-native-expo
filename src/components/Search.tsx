@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
-import searchFlickr from '../api/flickr';
+import { searchFlickr } from '../api/flickr';
 import { API_KEY } from '@env';
 
 function Search( {setPhotos, setLoading} ) {
@@ -12,10 +12,8 @@ function Search( {setPhotos, setLoading} ) {
     dataPromise.then((data: any) => {
       if (Array.isArray(data)) {
         setPhotos(data);
-        console.log("data is array:", data);
       } else {
         setPhotos([]);
-        console.log("data is NOT array:", data);
       }
 
       setLoading(false);

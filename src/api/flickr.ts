@@ -1,7 +1,5 @@
 import { Owner, PhotoDefinition, PhotoInformation } from "../types/PhotoClass";
 
-const yourApiKey = 'your api comes here';
-
 const getFlickrImageURL = (photo: any, size: string) => {
   let url = `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}`;
   if (size) {
@@ -19,15 +17,15 @@ const getAPIURL = (params: any) : string => {
   return url;
 }
 
-const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any => {
+export const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any => {
   const data = {
     method: 'flickr.photos.search',
     api_key: apiKey,
     text: searchText,
     sort: 'interestingness-desc',
     per_page: '12',
-    license: '4',
-    extras: 'owner_name,license',
+    //license: '4',
+    //extras: 'owner_name,license',
     format: 'json',
     nojsoncallback: '1',
     page: pageNum
@@ -42,8 +40,7 @@ const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any
       // get an array of image-url
       let res: Array<PhotoDefinition> = [];
       if (data.photos) {
-        console.log('This is data', data);
-        res = data.photos.photo.map((photo : any) => new PhotoDefinition(getFlickrImageURL(photo, 'q'), photo.id))
+        res = data.photos.photo.map((photo : any) => new PhotoDefinition(getFlickrImageURL(photo, 'w'), photo.id, photo.secret))
       } else {
         alert(data.message);
       }
@@ -53,12 +50,17 @@ const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any
   }));
 };
  
-const getPhotoInfo = (apiKey: string, id: string) => {
+export const getPhotoInfo = (apiKey: string, id: string, secret: string) => {
   const data = {
     method: 'flickr.photos.getInfo',
     api_key: apiKey,
-    id: id
+    photo_id: id,
+    secret: secret,
+    format: 'json',
+    nojsoncallback: '1',
   }
+
+  console.log('Getting info for photo: ', id);
 
   const url = getAPIURL(data);
 
@@ -68,12 +70,10 @@ const getPhotoInfo = (apiKey: string, id: string) => {
     .then(data => {
       let res: PhotoInformation = {} as PhotoInformation;
       if (data.photo) {
-        console.log('This is data', data);
         res = new PhotoInformation(
-          data.photo.title,
-          data.photo.description,
-          data.photo.url,
-          new Owner(data.photo.username, data.photo.realname, data.photo.location)
+          data.photo.title._content,
+          data.photo.description._content,
+          new Owner(data.photo.owner.username, data.photo.owner.realname, data.photo.owner.location)
         );
       } else {
         alert(data.message);
@@ -83,5 +83,3 @@ const getPhotoInfo = (apiKey: string, id: string) => {
     .catch(err => reject(err));
   }));
 };
-
-export default searchFlickr;

@@ -8,7 +8,7 @@ function Gallery( {photos, navigation} ) {
   }
 
   return (
-    <View style={{padding: 12}} >
+    <View style={{padding:7}}>
       <FlatList
         data={photos}
         renderItem={renderItem}
