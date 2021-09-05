@@ -7,13 +7,15 @@ import Search from './Search';
 const Home = ({navigation}) => {
   // todo state for array of flickr images
   const [photos, setPhotos] = React.useState([]);
+  const [searchText, setSearchText] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const [page, setPage] = React.useState(1);
 
   return (
     <ScrollView style={styles.container}>
-      <Search setPhotos = {setPhotos} setLoading = {setLoading} />
+      <Search setPhotos={setPhotos} setSearchText={setSearchText} setLoading={setLoading} setPage={setPage} />
       { loading && <Loading /> }
-      <Gallery photos={photos} navigation={navigation} />
+      <Gallery photos={photos} setPhotos={setPhotos} navigation={navigation} page={page} setPage={setPage} searchText={searchText}/>
     </ScrollView>
   );
 }
