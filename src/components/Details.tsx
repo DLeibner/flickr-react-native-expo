@@ -2,16 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import { getPhotoInfo } from '../api/flickr';
 import { API_KEY } from '@env';
+import { PhotoInformation } from '../types/PhotoClass';
+import { RootStackParamList } from '../../App';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
 const window = Dimensions.get('window');
 
-function Details({ route }) {
-  const [photoInfo, setPhotoInfo] = useState();
+type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
+
+function Details() : JSX.Element {
+  const route = useRoute<DetailsScreenRouteProp>();
+  const [photoInfo, setPhotoInfo] = useState<PhotoInformation>();
 
   useEffect(() => {
-    let dataPromise = getPhotoInfo(API_KEY, route.params.item.id, route.params.item.secret);
-    dataPromise.then((data: any) => {
-      setPhotoInfo(data);
+    const dataPromise = getPhotoInfo(API_KEY, route.params.item.id, route.params.item.secret);
+    dataPromise.then((data: PhotoInformation | unknown) => {
+      if (data instanceof PhotoInformation) {
+        setPhotoInfo(data);
+      }
     });
   }, []);
 

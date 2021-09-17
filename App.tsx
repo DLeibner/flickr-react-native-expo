@@ -3,10 +3,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import Home from "./src/components/Home";
 import Details from "./src/components/Details";
+import { PhotoDefinition } from './src/types/PhotoClass';
 
-const Stack = createNativeStackNavigator();
+export type RootStackParamList = {
+  Home: undefined;
+  Details: {item: PhotoDefinition };
+};
 
-export default function App() {
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+export default function App() : JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator>

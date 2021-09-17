@@ -17,7 +17,7 @@ const getAPIURL = (params: any) : string => {
   return url;
 }
 
-export const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : any => {
+export const searchFlickr = (apiKey: string, searchText: string, pageNum: string) : Promise<PhotoDefinition | unknown> => {
   const data = {
     method: 'flickr.photos.search',
     api_key: apiKey,
@@ -50,7 +50,7 @@ export const searchFlickr = (apiKey: string, searchText: string, pageNum: string
   }));
 };
  
-export const getPhotoInfo = (apiKey: string, id: string, secret: string) => {
+export const getPhotoInfo = (apiKey: string, id: string, secret: string) : Promise<PhotoInformation | unknown> => {
   const data = {
     method: 'flickr.photos.getInfo',
     api_key: apiKey,

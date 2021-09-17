@@ -1,9 +1,17 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet, Dimensions } from 'react-native';
+import { PhotoDefinition } from '../types/PhotoClass';
+import { HomeScreenProp } from './Home';
 
 const window = Dimensions.get('window');
 
-function Photo({ item, navigation }) {
+type Props = {
+  item: PhotoDefinition;
+  navigation: HomeScreenProp;
+};
+
+function Photo({ item, navigation} : Props) : JSX.Element {
+
   return (
     <Pressable
       onPress={() => navigation.navigate('Details', {item})}

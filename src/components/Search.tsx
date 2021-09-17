@@ -1,18 +1,26 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
+import { View, TextInput, StyleSheet, Button } from 'react-native';
 import { searchFlickr } from '../api/flickr';
 import { API_KEY } from '@env';
+import { PhotoDefinition } from '../types/PhotoClass';
 
-function Search( {setPhotos, setSearchText, setLoading, setPage} ) {
-  const [text, onChangeText] = React.useState("");
+type Props = {
+  setPhotos: (photos: Array<PhotoDefinition>) => void;
+  setSearchText: (searchText: string) => void;
+  setLoading: (loading: boolean) => void;
+  setPage: (page: number) => void;
+};
+
+function Search( {setPhotos, setSearchText, setLoading, setPage} : Props) : JSX.Element {
+  const [text, onChangeText] = React.useState<string>("");
 
   const searchAndSetPhotos = () => {
     setLoading(true);
     setPage(1);
     setSearchText(text);
     setPhotos([]);
-    let dataPromise = searchFlickr(API_KEY, text, "1");
-    dataPromise.then((data: any) => {
+    const dataPromise = searchFlickr(API_KEY, text, "1");
+    dataPromise.then((data: unknown) => {
       if (Array.isArray(data)) {
         setPhotos(data);
       } else {

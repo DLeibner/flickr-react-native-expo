@@ -1,18 +1,29 @@
 import { API_KEY } from '@env';
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList, ListRenderItemInfo } from 'react-native';
 import { searchFlickr } from '../api/flickr';
+import { PhotoDefinition } from '../types/PhotoClass';
+import { HomeScreenProp } from './Home';
 import Photo from './Photo';
 
-function Gallery( {photos, setPhotos, navigation, page, setPage, searchText} ) {
-  const renderItem = function (item) {
-    return (<Photo item={item.item} navigation={navigation} />);
+type Props = {
+  photos: Array<PhotoDefinition>;
+  setPhotos: (photos: Array<PhotoDefinition>) => void;
+  navigation: HomeScreenProp;
+  page: number;
+  setPage: (page: number) => void;
+  searchText: string;
+};
+
+function Gallery( {photos, setPhotos, navigation, page, setPage, searchText} : Props) : JSX.Element {
+  const renderItem = function ({item} : ListRenderItemInfo<PhotoDefinition>) : JSX.Element {
+    return (<Photo item={item} navigation={navigation} />);
   }
 
   const searchAndAppendPhotos = () => {
     setPage(page + 1);
-    let dataPromise = searchFlickr(API_KEY, searchText, page.toString());
-    dataPromise.then((data: any) => {
+    const dataPromise = searchFlickr(API_KEY, searchText, page.toString());
+    dataPromise.then((data: unknown) => {
       if (Array.isArray(data)) {
         setPhotos([...photos, ...data]);
       } else {
@@ -26,9 +37,9 @@ function Gallery( {photos, setPhotos, navigation, page, setPage, searchText} ) {
       <FlatList
         data={photos}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(photo) => photo.id}
         numColumns={2}
-        onEndReached={(dist) => {if (navigation.isFocused()) return searchAndAppendPhotos();}}
+        onEndReached={() => {if (navigation.isFocused()) return searchAndAppendPhotos();}}
         onEndReachedThreshold={0.1}
       />
     </View>
