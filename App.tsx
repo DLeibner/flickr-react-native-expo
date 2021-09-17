@@ -3,12 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import Home from "./src/components/Home";
 import Details from "./src/components/Details";
-import { PhotoDefinition } from './src/types/PhotoClass';
-
-export type RootStackParamList = {
-  Home: undefined;
-  Details: {item: PhotoDefinition };
-};
+import { RootStackParamList } from './src/types/PropTypes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

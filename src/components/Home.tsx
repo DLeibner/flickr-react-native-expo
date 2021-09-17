@@ -1,14 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { RootStackParamList } from '../../App';
 import { PhotoDefinition } from '../types/PhotoClass';
+import { HomeScreenProp } from '../types/PropTypes';
 import Gallery from './Gallery';
 import Loading from './Loading';
 import Search from './Search';
-
-export type HomeScreenProp = NativeStackNavigationProp<RootStackParamList, 'Home'>;
 
 const Home = () : JSX.Element => {
   const navigation = useNavigation<HomeScreenProp>();

@@ -2,16 +2,9 @@ import React from 'react';
 import { View, TextInput, StyleSheet, Button } from 'react-native';
 import { searchFlickr } from '../api/flickr';
 import { API_KEY } from '@env';
-import { PhotoDefinition } from '../types/PhotoClass';
+import { SearchProps } from '../types/PropTypes';
 
-type Props = {
-  setPhotos: (photos: Array<PhotoDefinition>) => void;
-  setSearchText: (searchText: string) => void;
-  setLoading: (loading: boolean) => void;
-  setPage: (page: number) => void;
-};
-
-function Search( {setPhotos, setSearchText, setLoading, setPage} : Props) : JSX.Element {
+function Search( {setPhotos, setSearchText, setLoading, setPage} : SearchProps) : JSX.Element {
   const [text, onChangeText] = React.useState<string>("");
 
   const searchAndSetPhotos = () => {

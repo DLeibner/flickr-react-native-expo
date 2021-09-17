@@ -3,19 +3,10 @@ import React from 'react';
 import { View, FlatList, ListRenderItemInfo } from 'react-native';
 import { searchFlickr } from '../api/flickr';
 import { PhotoDefinition } from '../types/PhotoClass';
-import { HomeScreenProp } from './Home';
+import { GalleryProps } from '../types/PropTypes';
 import Photo from './Photo';
 
-type Props = {
-  photos: Array<PhotoDefinition>;
-  setPhotos: (photos: Array<PhotoDefinition>) => void;
-  navigation: HomeScreenProp;
-  page: number;
-  setPage: (page: number) => void;
-  searchText: string;
-};
-
-function Gallery( {photos, setPhotos, navigation, page, setPage, searchText} : Props) : JSX.Element {
+function Gallery( {photos, setPhotos, navigation, page, setPage, searchText} : GalleryProps) : JSX.Element {
   const renderItem = function ({item} : ListRenderItemInfo<PhotoDefinition>) : JSX.Element {
     return (<Photo item={item} navigation={navigation} />);
   }

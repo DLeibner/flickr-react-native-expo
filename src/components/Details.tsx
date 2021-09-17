@@ -3,12 +3,10 @@ import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import { getPhotoInfo } from '../api/flickr';
 import { API_KEY } from '@env';
 import { PhotoInformation } from '../types/PhotoClass';
-import { RootStackParamList } from '../../App';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
+import { DetailsScreenRouteProp } from '../types/PropTypes';
 
 const window = Dimensions.get('window');
-
-type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
 
 function Details() : JSX.Element {
   const route = useRoute<DetailsScreenRouteProp>();
