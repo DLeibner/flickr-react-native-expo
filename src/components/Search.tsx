@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, TextInput, StyleSheet, Button } from 'react-native';
+import { View, TextInput, Button } from 'react-native';
 import { searchFlickr } from '../api/flickr';
 import { API_KEY } from '@env';
 import { SearchProps } from '../types/PropTypes';
+import { SearchStyle } from '../styles/CustomStyles';
 
 function Search( {setPhotos, setSearchText, setLoading, setPage} : SearchProps) : JSX.Element {
   const [text, onChangeText] = React.useState<string>("");
@@ -25,9 +26,9 @@ function Search( {setPhotos, setSearchText, setLoading, setPage} : SearchProps) 
   }
 
   return (
-    <View style={styles.container} >
+    <View style={SearchStyle.container} >
       <TextInput
-        style={styles.input}
+        style={SearchStyle.input}
         onChangeText={onChangeText}
         value={text}
       />
@@ -35,18 +36,5 @@ function Search( {setPhotos, setSearchText, setLoading, setPage} : SearchProps) 
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    marginBottom: 12,
-    borderWidth: 1,
-    padding: 10,
-    backgroundColor: "white"
-  },
-  container: {
-    padding: 12,
-  }
-});
 
 export default Search;

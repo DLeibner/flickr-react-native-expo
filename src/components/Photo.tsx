@@ -1,8 +1,7 @@
 import React from 'react';
-import { Image, Pressable, StyleSheet, Dimensions } from 'react-native';
+import { Image, Pressable } from 'react-native';
+import { PhotoStyle } from '../styles/CustomStyles';
 import { PhotoProps } from '../types/PropTypes';
-
-const window = Dimensions.get('window');
 
 function Photo({ item, navigation} : PhotoProps) : JSX.Element {
 
@@ -12,23 +11,10 @@ function Photo({ item, navigation} : PhotoProps) : JSX.Element {
     >
       <Image 
         source={{uri: item.url}}
-        style={styles.image}
+        style={PhotoStyle.image}
       />
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  image: {
-    alignContent: 'center',
-    width: window.width*0.48,
-    height: window.width*0.48,
-    //borderColor: "#a2e7ec",
-    borderColor: 'white',
-    borderWidth: 5,
-    resizeMode: 'cover',
-    position: 'relative'
-  },
-});
 
 export default Photo;

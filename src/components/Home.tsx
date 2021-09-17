@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
+import { HomeStyle } from '../styles/CustomStyles';
 import { PhotoDefinition } from '../types/PhotoClass';
 import { HomeScreenProp } from '../types/PropTypes';
 import Gallery from './Gallery';
@@ -16,7 +17,7 @@ const Home = () : JSX.Element => {
   const [page, setPage] = React.useState<number>(1);
 
   return (
-    <View style={styles.container}>
+    <View style={HomeStyle.container}>
       <Search setPhotos={setPhotos} setSearchText={setSearchText} setLoading={setLoading} setPage={setPage} />
       { loading && <Loading /> }
       <Gallery photos={photos} setPhotos={setPhotos} navigation={navigation} page={page} setPage={setPage} searchText={searchText}/>
@@ -25,11 +26,3 @@ const Home = () : JSX.Element => {
 }
 
 export default Home;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //backgroundColor: '#a2e7ec',
-    backgroundColor: 'white',
-  },
-});
